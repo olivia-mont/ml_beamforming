@@ -1,0 +1,51 @@
+# ============================================================
+# ECE 508 Term Project — Default Configuration
+# All experiments load this file. Change values here and
+# every script picks them up automatically.
+# ============================================================
+
+system:
+  Nt: 64          # Number of Tx antennas
+  Nr: 16          # Number of Rx antennas
+  L: 3            # Number of multipath components
+  seed: 42        # Global random seed (keeps results reproducible)
+
+codebook:
+  F_size: 64      # Number of Tx DFT beams
+  W_size: 16      # Number of Rx DFT beams
+  # Total beam pairs = F_size * W_size = 1024
+
+probing:
+  # T = how many beam pairs we measure during training
+  # We sweep over these values for the overhead plot
+  T_values: [8, 16, 32, 64, 128]
+  T_default: 32   # Used for SNR accuracy plots
+  Rx_beams_probed: 2   # Fix 2 Rx beams during probing
+
+snr:
+  train_snr_db_min: -10   # Training SNR range (dB)
+  train_snr_db_max: 20
+  test_snr_values: [-10, -5, 0, 5, 10, 15, 20]   # For accuracy vs SNR plot
+
+  # --- Add-on 1: SNR Mismatch ---
+  # We train in a HIGH SNR range, then test at LOW SNR
+  mismatch_train_snr_db_min: 5    # Train only on "good" SNR
+  mismatch_train_snr_db_max: 20
+  mismatch_test_snr_db_min: -10   # Test on "bad" SNR (out of distribution)
+  mismatch_test_snr_db_max: 0
+
+dataset:
+  n_train: 50000   # Training samples
+  n_val: 10000     # Validation samples
+  n_test: 10000    # Test samples
+
+training:
+  epochs: 50
+  batch_size: 256
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  patience: 10     # Early stopping: stop if val loss doesn't improve for 10 epochs
+
+model:
+  hidden_dims: [256, 256, 128]   # MLP layer sizes
+  dropout: 0.3

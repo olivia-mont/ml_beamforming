@@ -20,7 +20,7 @@ and test robustness when the model is evaluated on SNR conditions it wasn't trai
 ## Repository Structure
 
 ```
-mmwave_project/
+ml_beamforming/
 ├── configs/
 │   └── default.yaml          # All hyperparameters live here
 ├── channel/
@@ -35,7 +35,8 @@ mmwave_project/
 │   └── train.py              # Training loop with early stopping
 ├── eval/
 │   ├── evaluate.py           # Accuracy, rate, SNR mismatch evaluation
-│   ├── plots.py              # All figure generation
+│   ├── plots.py              # All figure generation (except top-5 accuracy)
+    ├── make_top5_figure.py   # Creates the Top-5 accuracy plot
 │   └── run_all.py            # ONE command to reproduce everything
 ├── outputs/                  # Created automatically when you run
 │   ├── figures/              # PDF figures for the report
@@ -51,8 +52,8 @@ mmwave_project/
 
 ```bash
 # 1. Clone the repo
-git clone <your-repo-url>
-cd mmwave_project
+git clone <repo-url>
+cd ml_beamforming
 
 # 2. Create a virtual environment (recommended)
 python -m venv venv
@@ -110,7 +111,7 @@ python ml/model.py             # Test neural network
 
 ---
 
-## Probing Design (Fixed, per Section 3 of spec)
+## Probing Design
 
 - **Tx beams:** T evenly-spaced indices from the 64-beam DFT codebook
 - **Rx beams:** First 2 beams fixed (Rx_beams_probed = 2)
@@ -125,6 +126,7 @@ python ml/model.py             # Test neural network
 |------|------|----------------|
 | `fig1_rate_vs_T.pdf` | Achievable rate vs overhead T | Section 4.4 Plot 1 |
 | `fig2_acc_vs_snr.pdf` | Top-1 accuracy vs SNR | Section 4.4 Plot 2 |
+| `fig2_acc_vs_snr_top5.pdf` | Top-5 accuracy vs SNR
 | `fig3_snr_mismatch.pdf` | SNR mismatch robustness | Add-on 1 / Section 4.4 Plot 3 |
 
 ---

@@ -3,6 +3,7 @@
 **Learning-Aided mmWave Beam Management with Geometric Sparse Channels and Codebooks**
 
 Team members: Daniel Best and Olivia Monteiro
+
 Add-on: Robustness Slice — SNR Mismatch
 
 ---
@@ -76,6 +77,7 @@ This single command:
 4. Saves all three required figures to `outputs/figures/`
 5. Saves all numeric results to `outputs/results.json`
 
+If you cloned this repo as-is, you should already have the outputs/checkpoints. This will allow the run_all command to skip past the training step and only generate the figures. If you want to run the training, delete outputs/checkpoints and outputs/datasets
 **Expected runtime:** ~30-60 min on CPU | ~10-15 min with GPU
 
 ---

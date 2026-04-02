@@ -331,3 +331,11 @@ print(f"  Figures:  {FIG_DIR}/")
 print(f"  Results:  {RESULTS_PATH}")
 print(f"  Models:   {CKPT_DIR}/")
 print(f"{'='*60}\n")
+
+# ================================================================
+# STEP 8: Figure 2b — Top-1 vs Top-5 Accuracy (Add-on)
+# ================================================================
+print("\n[STEP 8] Generating Top-1 vs Top-5 accuracy figure...")
+
+import runpy
+runpy.run_module('eval.make_top5_figure', run_name='__main__')
